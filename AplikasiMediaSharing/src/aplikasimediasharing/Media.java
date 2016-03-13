@@ -26,8 +26,8 @@ public abstract class Media {
     }
     
     public void tagPerson (Akun p) {
-        if (getNumAk() < 10) {
-            tagged[getNumAk()] = p;
+        if (numAk < 10) {
+            tagged[numAk] = p;
             numAk++;
         }
         else {
