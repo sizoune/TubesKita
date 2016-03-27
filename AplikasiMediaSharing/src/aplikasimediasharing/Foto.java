@@ -5,7 +5,7 @@
  */
 package aplikasimediasharing;
 
-public class Foto extends Media {
+public class Foto extends Media implements java.io.Serializable{
     private String nama;
     
     public Foto (double size, String nama) {
