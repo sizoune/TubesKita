@@ -3,22 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplikasimediasharing;
+package Model;
 
 /*import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;*/
 import java.util.ArrayList;
+import java.util.Date;
 //import java.nio.file.*;
 /**
  *
  * @author muham
  */
 public class Akun implements java.io.Serializable{
-    private String nama,pass,username;
-    private String tempattanggallahir;
-    private ArrayList<Media> media = new ArrayList();
+    private String namaDepan,namaBelakang,username,password,tempatLahir,email;
+    private Date tanggalLahir;
+    private int idAkun;
+    private ArrayList<Foto> foto = new ArrayList<Foto>();
+    private ArrayList<Video> video = new ArrayList<Video>();
     private ArrayList<Akun> friend = new ArrayList();
     
     //mengambil data dari database friend
@@ -92,74 +95,113 @@ public class Akun implements java.io.Serializable{
         }
         return obj;
     }*/
-    
-    public Akun(String nama, String pass, String username, String tempattanggallahir) {
-        this.nama = nama;
-        this.pass = pass;
+
+    public Akun(int idAkun, String username, String namaDepan, String namaBelakang,  String tempatLahir, Date tanggalLahir, String email, String password) {
+        this.namaDepan = namaDepan;
+        this.namaBelakang = namaBelakang;
         this.username = username;
-        this.tempattanggallahir = tempattanggallahir;
-    }
-    
-    public Akun () {
-        
-    }
-
-    public String getNama() {
-        return nama;
+        this.password = password;
+        this.tempatLahir = tempatLahir;
+        this.tanggalLahir = tanggalLahir;
+        this.email = email;
+        this.idAkun = idAkun;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public Akun() {
+    }
+    public String getNamaDepan() {
+        return namaDepan;
     }
 
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
+    public String getNamaBelakang() {
+        return namaBelakang;
     }
 
     public String getUsername() {
         return username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getTempatLahir() {
+        return tempatLahir;
+    }
+
+    public Date getTanggalLahir() {
+        return tanggalLahir;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getIdAkun() {
+        return idAkun;
+    }
+
+    public ArrayList<Akun> getFriend() {
+        return friend;
+    }
+
+    public ArrayList<Foto> getFoto() {
+        return foto;
+    }
+
+    public ArrayList<Video> getVideo() {
+        return video;
+    }
+    
+    public void setNamaDepan(String namaDepan) {
+        this.namaDepan = namaDepan;
+    }
+
+    public void setNamaBelakang(String namaBelakang) {
+        this.namaBelakang = namaBelakang;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getTempattanggallahir() {
-        return tempattanggallahir;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setTempattanggallahir(String tempattanggallahir) {
-        this.tempattanggallahir = tempattanggallahir;
+    public void setTempatLahir(String tempatLahir) {
+        this.tempatLahir = tempatLahir;
     }
-    
-    public void createMediaFoto (double size,String nama) {
-        media.add(new Foto(size,nama));
-        //savedataMedia(media, "media.ser");
+
+    public void setTanggalLahir(Date tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
     }
-    
-    public void createMediaVideo (double size,String nama) {
-        media.add(new Video(size,nama));
-        //savedataMedia(media, "media.ser");
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setIdAkun(int idAkun) {
+        this.idAkun = idAkun;
+    }
+
+    public void setFriend(ArrayList<Akun> friend) {
+        this.friend = friend;
+    }
+
+    public void setFoto(ArrayList<Foto> foto) {
+        this.foto = foto;
+    }
+
+    public void setVideo(ArrayList<Video> video) {
+        this.video = video;
     }
     
     public void followFriend (Akun p) {
         friend.add(p);
         //savedataFriend(friend,"friend.ser");
     }
-    
-    public Media getMedia (int i) {
-        return media.get(i);
-    }
-    
-    public void removeMedia (int i) {
-        media.remove(i);
-        //savedataMedia(media, "media.ser");
-    }
-    
+      
     public Akun getPerson (int i) {
         return friend.get(i);
     }
@@ -167,14 +209,6 @@ public class Akun implements java.io.Serializable{
     public void removePerson (int i) {
         friend.remove(i);
         //savedataFriend(friend,"friend.ser");
-    }
-    
-    public boolean cekMedia () {
-        //loadMedia();
-        return media.isEmpty();
-    }
-    public int sizeMedia() {
-        return media.size();
     }
     
     public boolean cekFriend () {
@@ -185,7 +219,7 @@ public class Akun implements java.io.Serializable{
         return friend.size();
     }
     
-    public void editFoto (int i, String nama, double size) {
+  /*  public void editFoto (int i, String nama, double size) {
         Foto f = (Foto)getMedia(i);
         f.setNama(nama);
         getMedia(i).setSize(size);
@@ -197,5 +231,5 @@ public class Akun implements java.io.Serializable{
         f.setNama(nama);
         getMedia(i).setSize(size);
         //savedataMedia(media, "media.ser");
-    }
+    } */
 } 
