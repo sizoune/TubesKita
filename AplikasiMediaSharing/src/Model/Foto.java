@@ -15,6 +15,10 @@ public class Foto extends Media implements java.io.Serializable{
         super(nama,size);
     }
     
+    public Foto() {
+        super();
+    }
+    
     public String getNama() {
         return super.getNama();
     }

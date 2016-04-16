@@ -8,6 +8,7 @@ package view;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,10 +51,11 @@ public class Account extends javax.swing.JFrame implements View{
         cbDate = new javax.swing.JComboBox();
         jEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cbYear.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000" }));
+        cbYear.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000" }));
 
         TitleAccountLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         TitleAccountLabel.setText("Fill 'em All");
@@ -72,11 +74,13 @@ public class Account extends javax.swing.JFrame implements View{
 
         jLabel6.setText("Birth Date");
 
-        cbMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
+        cbMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
 
-        cbDate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbDate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         jLabel7.setText("Email");
+
+        jBack.setText("< Back");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,42 +90,44 @@ public class Account extends javax.swing.JFrame implements View{
                 .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jUsername))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFname)
-                            .addComponent(jLname)
-                            .addComponent(jBplace)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel7))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                                .addComponent(jEmail, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPassword)
-                            .addComponent(jEmail, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                .addComponent(cbYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jFname)
+                            .addComponent(jLname)
+                            .addComponent(jBplace)
+                            .addComponent(jUsername))))
                 .addGap(165, 165, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(162, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(TitleAccountLabel)
                         .addGap(187, 187, 187))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jBack)
+                        .addGap(80, 80, 80)
                         .addComponent(accountButton)
                         .addGap(141, 141, 141))))
         );
@@ -163,7 +169,9 @@ public class Account extends javax.swing.JFrame implements View{
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)))
                 .addGap(18, 18, 18)
-                .addComponent(accountButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accountButton)
+                    .addComponent(jBack))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -180,6 +188,7 @@ public class Account extends javax.swing.JFrame implements View{
     private javax.swing.JComboBox cbDate;
     private javax.swing.JComboBox cbMonth;
     private javax.swing.JComboBox cbYear;
+    private javax.swing.JButton jBack;
     private javax.swing.JTextField jBplace;
     private javax.swing.JTextField jEmail;
     private javax.swing.JTextField jFname;
@@ -198,6 +207,7 @@ public class Account extends javax.swing.JFrame implements View{
     @Override
     public void addListener(ActionListener e) {
         accountButton.addActionListener(e);
+        jBack.addActionListener(e);
     }
     
     @Override
@@ -207,6 +217,10 @@ public class Account extends javax.swing.JFrame implements View{
 
     public Object getAccountButton() {
         return accountButton;
+    }
+    
+    public Object getBackbutton() {
+        return jBack;
     }
 
     public String getUsername() {
@@ -228,13 +242,21 @@ public class Account extends javax.swing.JFrame implements View{
     public String getBirthplace() {
         return jBplace.getText();
     }
-
-    public Date getBirthdate() {
-        Date d = new Date();
-        d.setDate(cbDate.getSelectedIndex() + 1);
-        d.setMonth(cbMonth.getSelectedIndex() + 1);
-        d.setYear(cbYear.getSelectedIndex() + 90);
-        return d;
+    
+    public JComboBox getcbDate() {
+        return cbDate;
+    }
+    
+    public JComboBox getcbMonth() {
+        return cbMonth;
+    }
+    
+    public JComboBox getcbYear() {
+        return cbYear;
+    }
+    
+    public String getBirthdate() {
+        return cbDate.getSelectedItem()+"-"+cbMonth.getSelectedItem()+"-"+cbYear.getSelectedItem();
     }
     
     public String getEmail() {

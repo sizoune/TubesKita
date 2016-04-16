@@ -17,8 +17,7 @@ import java.util.Date;
  * @author muham
  */
 public class Akun implements java.io.Serializable{
-    private String namaDepan,namaBelakang,username,password,tempatLahir,email;
-    private Date tanggalLahir;
+    private String namaDepan,namaBelakang,username,password,tempatLahir,tanggalLahir,email;
     private int idAkun;
     private ArrayList<Foto> foto = new ArrayList<Foto>();
     private ArrayList<Video> video = new ArrayList<Video>();
@@ -96,7 +95,7 @@ public class Akun implements java.io.Serializable{
         return obj;
     }*/
 
-    public Akun(int idAkun, String username, String namaDepan, String namaBelakang,  String tempatLahir, Date tanggalLahir, String email, String password) {
+    public Akun(int idAkun, String username, String namaDepan, String namaBelakang,  String tempatLahir, String tanggalLahir, String email, String password) {
         this.namaDepan = namaDepan;
         this.namaBelakang = namaBelakang;
         this.username = username;
@@ -129,7 +128,7 @@ public class Akun implements java.io.Serializable{
         return tempatLahir;
     }
 
-    public Date getTanggalLahir() {
+    public String getTanggalLahir() {
         return tanggalLahir;
     }
 
@@ -173,7 +172,7 @@ public class Akun implements java.io.Serializable{
         this.tempatLahir = tempatLahir;
     }
 
-    public void setTanggalLahir(Date tanggalLahir) {
+    public void setTanggalLahir(String tanggalLahir) {
         this.tanggalLahir = tanggalLahir;
     }
 

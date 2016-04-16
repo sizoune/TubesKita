@@ -25,9 +25,8 @@ import javax.swing.JOptionPane;
  */
 public class Aplikasi {
 
+    private ArrayList<Media> listMedia = new ArrayList<Media>();
     private ArrayList<Akun> listAkun = new ArrayList<Akun>();
-    private ArrayList<Video> listVideo = new ArrayList<Video>();
-    private ArrayList<Foto> listFoto = new ArrayList<Foto>();
     private ArrayList<Integer> listFriend = new ArrayList<Integer>();
     boolean cek = false;
     public String userr;
@@ -35,16 +34,16 @@ public class Aplikasi {
     private ResultSet rs = null;
     private Database db = new Database();
     private boolean validLogin = false;
-    
+
     public Aplikasi() {
         //loadSemuaAkun();
     }
-    
+
     public void loadSemuaAkun() {
         rs = db.loadSemuaAkunDB();
         try {
             while (rs.next()) {
-                Akun akun = new Akun(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8));
+                Akun akun = new Akun(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
                 listAkun.add(akun);
             }
             rs.close();
@@ -65,16 +64,35 @@ public class Aplikasi {
         }
     }
 
+    public void refreshListMedia(int id) {
+        listMedia = new ArrayList<Media>();
+        rs = db.loadSemuaMediaDB(id);
+        try {
+            while (rs.next()) {
+                if (rs.getString(3).equals("foto")) {
+                    Media f = new Foto(rs.getInt(1), rs.getString(4), rs.getDouble(5));
+                    listMedia.add(f);
+                } else if (rs.getString(3).equals("video")) {
+                    Media v = new Video(rs.getInt(1), rs.getString(4), rs.getDouble(5));
+                    listMedia.add(v);
+                }
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " " + ex.getMessage(), "Can't Get Data", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
     public void loadSemuaMediaUser(int id) {
         rs = db.loadSemuaMediaDB(id);
         try {
             while (rs.next()) {
-                if (rs.getString(3).equals("Foto")) {
-                    Foto f = new Foto(rs.getInt(1), rs.getString(4), rs.getDouble(5));
-                    listFoto.add(f);
-                } else if (rs.getString(3).equals("Video")) {
-                    Video v = new Video(rs.getInt(1), rs.getString(4), rs.getDouble(5));
-                    listVideo.add(v);
+                if (rs.getString(3).equals("foto")) {
+                    Media f = new Foto(rs.getInt(1), rs.getString(4), rs.getDouble(5));
+                    listMedia.add(f);
+                } else if (rs.getString(3).equals("video")) {
+                    Media v = new Video(rs.getInt(1), rs.getString(4), rs.getDouble(5));
+                    listMedia.add(v);
                 }
             }
             rs.close();
@@ -84,14 +102,46 @@ public class Aplikasi {
     }
 
     public boolean login(String username, String password) {
+        loadSemuaAkun();
+        validLogin = false;
         Akun temp = getAkun(username);
         if (temp != null) {
             if (temp.getPassword().equals(password)) {
+                loadSemuaMediaUser(getAkun(username).getIdAkun());
                 validLogin = true;
             }
         }
         return validLogin;
     }
+
+    public Foto getMediaFoto(String name) {
+        Foto result = new Foto();
+        for (Media temp : listMedia) {
+            if (temp instanceof Foto) {
+                Foto cek = (Foto) temp;
+                if (cek.getNama().equals(name)) {
+                    result = cek;
+                    return result;
+                }
+            }
+        }
+        return null;
+    }
+    
+    public Video getMediaVideo(String name) {
+        Video result = new Video();
+        for (Media temp : listMedia) {
+            if (temp instanceof Video) {
+                Video cek = (Video) temp;
+                if (cek.getNama().equals(name)) {
+                    result = cek;
+                    return result;
+                }
+            }
+        }
+        return null;
+    }
+    
 
     public Akun getAkun(String username) {
         Akun result = new Akun();
@@ -104,8 +154,37 @@ public class Aplikasi {
         return null;
     }
 
+    public String displayMedia(Media a) {
+        return "Name : " + a.getNama() + "\n"
+                + "Size : " + a.getSize();
+    }
+
+    public int getsizeMedia() {
+        return listMedia.size();
+    }
+
+    public Media getMedia(int i) {
+        return listMedia.get(i);
+    }
+
+    public ArrayList<Media> getlistMedia() {
+        return listMedia;
+    }
+
     public void addAkun(Akun a) {
         db.insertAkun(a);
+    }
+
+    public void addMedia(Media m, Akun a) {
+        db.insertMedia(m, a);
+    }
+
+    public void updateAkun(Akun a) {
+        db.updateAkun(a);
+    }
+    
+    public void delMedia(int i) {
+        db.deleteMedia(i);
     }
 
     /*

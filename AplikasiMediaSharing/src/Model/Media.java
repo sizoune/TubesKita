@@ -36,6 +36,10 @@ public abstract class Media implements java.io.Serializable {
         this.size = size;
         this.nama = nama;
     }
+    
+    public Media() {
+        
+    }
 
     public void setNumAk(int numAk) {
         this.numAk = numAk;

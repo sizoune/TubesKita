@@ -136,7 +136,7 @@ public class LoginUser extends javax.swing.JFrame implements View {
     }
 
     public String getPassword() {
-        return (String) passwordField.getPassword().toString();
+        return passwordField.getText();
     }
     
     public void reset() {

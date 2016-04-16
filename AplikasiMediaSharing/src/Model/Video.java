@@ -19,6 +19,10 @@ public class Video extends Media implements java.io.Serializable {
         super(nama,size);
     }
     
+    public Video() {
+        super();
+    }
+    
     public String getNama() {
         return super.getNama();
     }
