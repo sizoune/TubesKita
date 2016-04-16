@@ -24,6 +24,7 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
     private View view;
     private String uSession;
     private int ff = 0;
+    private Model.Akun akun = null;
 
     public LoginPanelController(Aplikasi e) {
         this.aplikasi = e;
@@ -70,6 +71,13 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                             pro.getTextVideo().append(aplikasi.displayMedia(aplikasi.getMedia(i)));
                             pro.getTextVideo().append("\n===========================\n");
                         }
+                    }
+                    if (!aplikasi.cekFriend()) {
+                        DefaultListModel df = new DefaultListModel();
+                        for (int i = 0; i < aplikasi.getsizeFriend(); i++) {
+                            df.addElement(aplikasi.getFriend(i).getNamaDepan());
+                        }
+                        pro.getlistFriend().setModel(df);
                     }
                     pro.setVisible(true);
                     pro.addListener(this);
@@ -164,6 +172,41 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                 med.addListener(this);
                 pro.dispose();
                 view = med;
+            } else if (src.equals(pro.getFriendButton())) {
+                boolean cekf = false;
+                AddFriend ad = new AddFriend();
+                ad.setLocationRelativeTo(null);
+                DefaultListModel df = new DefaultListModel();
+                DefaultListModel df1 = new DefaultListModel();
+                aplikasi.refreshlistFriend(aplikasi.getAkun(uSession));
+                if (!aplikasi.cekFriend()) {
+                    for (int i = 0; i < aplikasi.getsizeAkun(); i++) {
+                        for (int x = 0; x < aplikasi.getsizeFriend(); x++) {
+                            if (aplikasi.getFriend(x).getIdAkun() == aplikasi.getAkun(i).getIdAkun()) {
+                                cekf = true;
+                            }
+                        }
+                        if (cekf == false) {
+                            df.addElement(aplikasi.getAkun(i).getUsername());
+                        }
+                        cekf = false;
+                    }
+                    ad.getlistAkun().setModel(df);
+                    for (int i = 0; i < aplikasi.getsizeFriend(); i++) {
+                        df1.addElement(aplikasi.getFriend(i).getUsername());
+                    }
+                    ad.getlistAkun1().setModel(df1);
+                } else {
+                    for (int i = 0; i < aplikasi.getsizeAkun(); i++) {
+                        df.addElement(aplikasi.getAkun(i).getUsername());
+                    }
+                    ad.getlistAkun().setModel(df);
+                }
+                ad.setVisible(true);
+                ad.addListener(this);
+                ad.addAdapter(this);
+                pro.dispose();
+                view = ad;
             }
         } else if (view instanceof Media) {
             Media med = (Media) view;
@@ -196,6 +239,13 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                         pro.getTextVideo().append(aplikasi.displayMedia(aplikasi.getMedia(i)));
                         pro.getTextVideo().append("\n===========================\n");
                     }
+                }
+                if (!aplikasi.cekFriend()) {
+                    DefaultListModel df = new DefaultListModel();
+                    for (int i = 0; i < aplikasi.getsizeFriend(); i++) {
+                        df.addElement(aplikasi.getFriend(i).getUsername());
+                    }
+                    pro.getlistFriend().setModel(df);
                 }
                 pro.setVisible(true);
                 pro.addListener(this);
@@ -300,6 +350,120 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                     JOptionPane.showMessageDialog(null, "Tidak ada foto yang dipilih !");
                 }
             }
+        } else if (view instanceof AddFriend) {
+            AddFriend ad = (AddFriend) view;
+            if (src.equals(ad.getBack())) {
+                Profile pro = new Profile();
+                pro.setLocationRelativeTo(null);
+                Model.Akun as = aplikasi.getAkun(uSession);
+                pro.setFirstName(as.getNamaDepan());
+                pro.setLastName(as.getNamaBelakang());
+                pro.setBirthPlace(as.getTempatLahir());
+                pro.setUsername(as.getUsername());
+                pro.setPassword(as.getPassword());
+                if ((as.getTanggalLahir()).length() == 10) {
+                    dt = as.getTanggalLahir().substring(0, 1);
+                    mn = as.getTanggalLahir().substring(2, 5);
+                    yr = as.getTanggalLahir().substring(6, 10);
+                } else {
+                    dt = as.getTanggalLahir().substring(0, 2);
+                    mn = as.getTanggalLahir().substring(3, 6);
+                    yr = as.getTanggalLahir().substring(7, 11);
+                }
+                aplikasi.refreshListMedia(aplikasi.getAkun(uSession).getIdAkun());
+                pro.setBirthDate(dt, mn, yr);
+                pro.resetMedia();
+                for (int i = 0; i < aplikasi.getsizeMedia(); i++) {
+                    if (aplikasi.getMedia(i) instanceof Model.Foto) {
+                        pro.getTextFoto().append(aplikasi.displayMedia(aplikasi.getMedia(i)));
+                        pro.getTextFoto().append("\n===========================\n");
+                    } else {
+                        pro.getTextVideo().append(aplikasi.displayMedia(aplikasi.getMedia(i)));
+                        pro.getTextVideo().append("\n===========================\n");
+                    }
+                }
+                if (!aplikasi.cekFriend()) {
+                    DefaultListModel df = new DefaultListModel();
+                    for (int i = 0; i < aplikasi.getsizeFriend(); i++) {
+                        df.addElement(aplikasi.getFriend(i).getUsername());
+                    }
+                    pro.getlistFriend().setModel(df);
+                }
+                pro.setVisible(true);
+                pro.addListener(this);
+                ad.dispose();
+                view = pro;
+            } else if (src.equals(ad.getAdd())) {
+                if (akun != null) {
+                    boolean cekf = false;
+                    aplikasi.addFriend(akun, aplikasi.getAkun(uSession));
+                    JOptionPane.showMessageDialog(null, "Friend Added !");
+                    DefaultListModel df = new DefaultListModel();
+                    DefaultListModel df1 = new DefaultListModel();
+                    aplikasi.refreshlistFriend(aplikasi.getAkun(uSession));
+                    if (!aplikasi.cekFriend()) {
+                        for (int i = 0; i < aplikasi.getsizeAkun(); i++) {
+                            for (int x = 0; x < aplikasi.getsizeFriend(); x++) {
+                                if (aplikasi.getFriend(x).getIdAkun() == aplikasi.getAkun(i).getIdAkun()) {
+                                    cekf = true;
+                                }
+                            }
+                            if (cekf == false) {
+                                df.addElement(aplikasi.getAkun(i).getUsername());
+                            }
+                            cekf = false;
+                        }
+                        ad.getlistAkun().setModel(df);
+                        for (int i = 0; i < aplikasi.getsizeFriend(); i++) {
+                            df1.addElement(aplikasi.getFriend(i).getUsername());
+                        }
+                        ad.getlistAkun1().setModel(df1);
+                    } else {
+                        for (int i = 0; i < aplikasi.getsizeAkun(); i++) {
+                            df.addElement(aplikasi.getAkun(i).getUsername());
+                        }
+                        ad.getlistAkun().setModel(df);
+                    }
+                    akun = null;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Tidak ada Akun yang dipilih !");
+                }
+            } else if (src.equals(ad.getDel())) {
+                if (akun != null) {
+                    boolean cekf = false;
+                    aplikasi.delFriend(akun, aplikasi.getAkun(uSession));
+                    JOptionPane.showMessageDialog(null, "Friend Deleted !");
+                    DefaultListModel df = new DefaultListModel();
+                    DefaultListModel df1 = new DefaultListModel();
+                    aplikasi.refreshlistFriend(aplikasi.getAkun(uSession));
+                    if (!aplikasi.cekFriend()) {
+                        for (int i = 0; i < aplikasi.getsizeAkun(); i++) {
+                            for (int x = 0; x < aplikasi.getsizeFriend(); x++) {
+                                if (aplikasi.getFriend(x).getIdAkun() == aplikasi.getAkun(i).getIdAkun()) {
+                                    cekf = true;
+                                }
+                            }
+                            if (cekf == false) {
+                                df.addElement(aplikasi.getAkun(i).getUsername());
+                            }
+                            cekf = false;
+                        }
+                        ad.getlistAkun().setModel(df);
+                        for (int i = 0; i < aplikasi.getsizeFriend(); i++) {
+                            df1.addElement(aplikasi.getFriend(i).getUsername());
+                        }
+                        ad.getlistAkun1().setModel(df1);
+                    } else {
+                        for (int i = 0; i < aplikasi.getsizeAkun(); i++) {
+                            df.addElement(aplikasi.getAkun(i).getUsername());
+                        }
+                        ad.getlistAkun().setModel(df);
+                    }
+                    akun = null;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Tidak ada Akun yang dipilih !");
+                }
+            }
         }
     }
 
@@ -319,6 +483,23 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                 m.getlistFoto().clearSelection();
                 if (aplikasi.getMediaVideo(m.getselectedVideo()) != null) {
                     ff = aplikasi.getMediaVideo(m.getselectedVideo()).getIdMedia();
+                }
+            }
+        } else if (view instanceof AddFriend) {
+            AddFriend ad = (AddFriend) view;
+            if (ad.gettabPane().getSelectedComponent() == ad.getPanelAdd()) {
+                akun = null;
+                ad.getlistAkun1().clearSelection();
+                if (aplikasi.getAkun(ad.getselectedAdd()) != null) {
+                    akun = aplikasi.getAkun(ad.getselectedAdd());
+                    //JOptionPane.showMessageDialog(null, akun.getNamaDepan());
+                }
+            }
+            if (ad.gettabPane().getSelectedComponent() == ad.getPanelDel()) {
+                akun = null;
+                ad.getlistAkun().clearSelection();
+                if (aplikasi.getAkun(ad.getselectedDel()) != null) {
+                    akun = aplikasi.getAkun(ad.getselectedDel());
                 }
             }
         }

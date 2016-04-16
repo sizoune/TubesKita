@@ -7,6 +7,7 @@ package view;
 
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -52,7 +53,7 @@ public class Profile extends javax.swing.JFrame implements View {
         editProfileButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jListFriend = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
         picButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -136,7 +137,7 @@ public class Profile extends javax.swing.JFrame implements View {
 
         jLabel6.setText("Birth Date");
 
-        jScrollPane3.setViewportView(jList1);
+        jScrollPane3.setViewportView(jListFriend);
 
         jLabel1.setText("Friend List");
 
@@ -298,7 +299,7 @@ public class Profile extends javax.swing.JFrame implements View {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList1;
+    private javax.swing.JList jListFriend;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -316,6 +317,10 @@ public class Profile extends javax.swing.JFrame implements View {
         addFriendButton.addActionListener(e);
         editProfileButton.addActionListener(e);
         picButton.addActionListener(e);
+    }
+    
+    public JList getlistFriend() {
+        return jListFriend;
     }
     
     @Override

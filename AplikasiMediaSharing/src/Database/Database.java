@@ -68,10 +68,23 @@ public class Database {
         return rs;
     }
     
-    public ResultSet loadSemuaFriendDB(int id) {
-        String query = "select * from friend where id_user'" + id + "'";
+    public ResultSet loadSemuaFriendDB(Akun a) {
+        String query = "select id_user,username,first_name,last_name from user where id_user in "
+                + "(select id_user from friend where id_kita = "+a.getIdAkun()+")";
         rs = getData(query);
         return rs;
+    }
+    
+    public void insertFriend (Akun friend, Akun kita) {
+        String query = "insert into friend (id_user,id_kita) values ("
+                +friend.getIdAkun()+","
+                +kita.getIdAkun()+")";
+        execute(query);
+    }
+    
+    public void deleteFriend (Akun friend, Akun kita) {
+        String query = "delete from friend where id_user = "+friend.getIdAkun()+" and id_kita = "+kita.getIdAkun();
+        execute(query);
     }
     
     public void insertAkun(Akun a) {
@@ -105,6 +118,7 @@ public class Database {
         String query = "delete from media where id_media = "+id;
         execute(query);
     }
+    
     
     public void updateAkun(Akun a) {
         String query = "update user set "
