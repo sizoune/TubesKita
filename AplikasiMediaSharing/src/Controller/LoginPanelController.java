@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class LoginPanelController extends MouseAdapter implements ActionListener {
 
@@ -153,6 +155,7 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                     JOptionPane.showMessageDialog(null, "Data Updated !");
                 }
             } else if (src.equals(pro.getMediaButton())) {
+                boolean cekf = false;
                 Media med = new Media();
                 DefaultListModel df = new DefaultListModel();
                 DefaultListModel df1 = new DefaultListModel();
@@ -167,9 +170,24 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                 }
                 med.getlistFoto().setModel(df);
                 med.getlistVideo().setModel(df1);
+                if (!aplikasi.cekFriend()) {
+                    DefaultListModel df2 = new DefaultListModel();
+                    for (int i = 0; i < aplikasi.getsizeFriend(); i++) {
+                        df2.addElement(aplikasi.getFriend(i).getNamaDepan());
+                    }
+                    med.getlistFriend().setModel(df2);
+                }
                 med.setVisible(true);
                 med.addAdapter(this);
                 med.addListener(this);
+                med.gettabTag().getModel().addChangeListener((ChangeEvent e1) -> {
+                    if (med.gettabTag().getTitleAt(med.gettabTag().getSelectedIndex()).equals("Tag")) {
+                        ff = 0;
+                        med.getlistFoto().clearSelection();
+                        med.getlistVideo().clearSelection();
+                        //JOptionPane.showMessageDialog(null, "tag");
+                    }
+                });
                 pro.dispose();
                 view = med;
             } else if (src.equals(pro.getFriendButton())) {
@@ -261,6 +279,7 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                         Model.Media mft = new Model.Foto(med.getnameFoto(), ab);
                         aplikasi.addMedia(mft, aplikasi.getAkun(uSession));
                         JOptionPane.showMessageDialog(null, "Media Added !");
+                        med.reset();
                         DefaultListModel df = new DefaultListModel();
                         DefaultListModel df1 = new DefaultListModel();
                         med.setLocationRelativeTo(null);
@@ -289,6 +308,7 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                         Model.Media mft = new Model.Video(med.getnameVideo(), ab);
                         aplikasi.addMedia(mft, aplikasi.getAkun(uSession));
                         JOptionPane.showMessageDialog(null, "Media Added !");
+                        med.reset();
                         DefaultListModel df = new DefaultListModel();
                         DefaultListModel df1 = new DefaultListModel();
                         med.setLocationRelativeTo(null);
@@ -348,6 +368,34 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                     ff = 0;
                 } else {
                     JOptionPane.showMessageDialog(null, "Tidak ada foto yang dipilih !");
+                }
+            } else if (src.equals(med.getcomboMedia())) {
+                if (med.getselectedCBMdia().equals("Photo")) {
+                    ff = 0;
+                    med.getPanelMedia().setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Photo"));
+                    DefaultListModel df = new DefaultListModel();
+                    aplikasi.refreshListMedia(aplikasi.getAkun(uSession).getIdAkun());
+                    for (int i = 0; i < aplikasi.getsizeMedia(); i++) {
+                        if (aplikasi.getMedia(i) instanceof Model.Foto) {
+                            df.addElement(aplikasi.getMedia(i).getNama());
+                        }
+                        med.getlistMedia().setModel(df);
+                    }
+                } else if (med.getselectedCBMdia().equals("Video")) {
+                    ff = 0;
+                    med.getPanelMedia().setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Video"));
+                    DefaultListModel df = new DefaultListModel();
+                    aplikasi.refreshListMedia(aplikasi.getAkun(uSession).getIdAkun());
+                    for (int i = 0; i < aplikasi.getsizeMedia(); i++) {
+                        if (aplikasi.getMedia(i) instanceof Model.Video) {
+                            df.addElement(aplikasi.getMedia(i).getNama());
+                        }
+                        med.getlistMedia().setModel(df);
+                    }
+                } else {
+                    med.getPanelMedia().setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), ""));
+                    DefaultListModel df = new DefaultListModel();
+                    med.getlistMedia().setModel(df);
                 }
             }
         } else if (view instanceof AddFriend) {
@@ -458,6 +506,10 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                             df.addElement(aplikasi.getAkun(i).getUsername());
                         }
                         ad.getlistAkun().setModel(df);
+                        for (int i = 0; i < aplikasi.getsizeFriend(); i++) {
+                            df1.addElement(aplikasi.getFriend(i).getUsername());
+                        }
+                        ad.getlistAkun1().setModel(df1);
                     }
                     akun = null;
                 } else {
@@ -474,6 +526,8 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
             if (m.gettabPabe().getSelectedComponent() == m.getPanel3()) {
                 ff = 0;
                 m.getlistVideo().clearSelection();
+               // m.getlistFriend().clearSelection();
+               // m.getlistMedia().clearSelection();
                 if (aplikasi.getMediaFoto(m.getselectedFoto()) != null) {
                     ff = aplikasi.getMediaFoto(m.getselectedFoto()).getIdMedia();
                 }
@@ -481,10 +535,20 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
             if (m.gettabPabe().getSelectedComponent() == m.getPanel4()) {
                 ff = 0;
                 m.getlistFoto().clearSelection();
+               // m.getlistFriend().clearSelection();
+                //m.getlistMedia().clearSelection();
                 if (aplikasi.getMediaVideo(m.getselectedVideo()) != null) {
                     ff = aplikasi.getMediaVideo(m.getselectedVideo()).getIdMedia();
                 }
             }
+            /*if (m.gettabPane().getSelectedComponent() == m.getPanel9()) {
+             ff=0;
+             m.getlistVideo().clearSelection();
+             m.getlistFoto().clearSelection();
+             if (aplikasi.getMediaFoto(m.getselectedFoto()) != null) {
+             ff = aplikasi.getMediaFoto(m.getselectedMedia()).getIdMedia();
+             }
+             }*/
         } else if (view instanceof AddFriend) {
             AddFriend ad = (AddFriend) view;
             if (ad.gettabPane().getSelectedComponent() == ad.getPanelAdd()) {

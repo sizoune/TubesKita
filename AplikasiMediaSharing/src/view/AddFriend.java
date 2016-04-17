@@ -67,7 +67,7 @@ public class AddFriend extends javax.swing.JFrame implements View {
 
         jLabel8.setText("1. Select Account in the Account list");
 
-        jLabel9.setText("2. Click Button +Add Friend");
+        jLabel9.setText("2. Click +Add Friend Button");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -150,7 +150,7 @@ public class AddFriend extends javax.swing.JFrame implements View {
 
         jLabel10.setText("1. Select Account in the Account list");
 
-        jLabel11.setText("2. Click Button Delete");
+        jLabel11.setText("2. Click Delete Button");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
