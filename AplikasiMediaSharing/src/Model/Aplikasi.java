@@ -64,8 +64,24 @@ public class Aplikasi {
             JOptionPane.showMessageDialog(null, " " + ex.getMessage(), "Can't Get Data", JOptionPane.WARNING_MESSAGE);
         }
     }
-    
-    public void refreshlistFriend (Akun a) {
+
+    public void refreshTag(int idmedia, Akun kita) {
+        rs = db.loadTag(idmedia, kita);
+        try {
+            loadSemuaMediaUser(kita.getIdAkun());
+            while (rs.next()) {
+                for (int i=0; i<listMedia.size();i++) {
+                    if (listMedia.get(i).getIdMedia()==idmedia) {
+                        listMedia.get(i).tagPerson(new Akun(rs.getInt(1),rs.getString(2)));
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " " + ex.getMessage(), "Can't Get Data", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    public void refreshlistFriend(Akun a) {
         listFriend = new ArrayList<Akun>();
         rs = db.loadSemuaFriendDB(a);
         try {
@@ -143,7 +159,7 @@ public class Aplikasi {
         }
         return null;
     }
-    
+
     public Video getMediaVideo(String name) {
         Video result = new Video();
         for (Media temp : listMedia) {
@@ -156,7 +172,7 @@ public class Aplikasi {
             }
         }
         return null;
-    }   
+    }
 
     public Akun getAkun(String username) {
         Akun result = new Akun();
@@ -177,11 +193,11 @@ public class Aplikasi {
     public int getsizeMedia() {
         return listMedia.size();
     }
-    
+
     public int getsizeFriend() {
         return listFriend.size();
     }
-    
+
     public int getsizeAkun() {
         return listAkun.size();
     }
@@ -189,29 +205,27 @@ public class Aplikasi {
     public Media getMedia(int i) {
         return listMedia.get(i);
     }
-    
-  
 
     public ArrayList<Media> getlistMedia() {
         return listMedia;
     }
-    
+
     public Akun getAkun(int id) {
         return listAkun.get(id);
     }
-    
+
     public ArrayList<Akun> getlistAkun() {
         return listAkun;
     }
-    
+
     public Akun getFriend(int id) {
         return listFriend.get(id);
     }
-    
+
     public ArrayList<Akun> getlistFriend() {
         return listFriend;
     }
-    
+
     public boolean cekFriend() {
         return listFriend.isEmpty();
     }
@@ -223,20 +237,24 @@ public class Aplikasi {
     public void addMedia(Media m, Akun a) {
         db.insertMedia(m, a);
     }
-    
+
     public void addFriend(Akun friend, Akun kita) {
         db.insertFriend(friend, kita);
     }
-    
+
+    public void addTag(int a, Akun f, Akun k) {
+        db.insertTag(a, f, k);
+    }
+
     public void updateAkun(Akun a) {
         db.updateAkun(a);
     }
-    
+
     public void delMedia(int i) {
         db.deleteMedia(i);
     }
-    
-    public void delFriend (Akun friend, Akun kita) {
+
+    public void delFriend(Akun friend, Akun kita) {
         db.deleteFriend(friend, kita);
     }
 

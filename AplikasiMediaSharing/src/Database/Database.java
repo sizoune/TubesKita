@@ -71,6 +71,13 @@ public class Database {
     public ResultSet loadSemuaFriendDB(Akun a) {
         String query = "select id_user,username,first_name,last_name from user where id_user in "
                 + "(select id_user from friend where id_kita = "+a.getIdAkun()+")";
+        System.out.println(query);
+        rs = getData(query);
+        return rs;
+    }
+    
+    public ResultSet loadTag (int i,Akun a) {
+        String query = "select id_user,username from tag join user using (id_user) where id_media = "+i;
         rs = getData(query);
         return rs;
     }
@@ -111,6 +118,14 @@ public class Database {
                 + cek + "','"
                 + m.getNama() + "',"
                 + m.getSize() + ")";
+        execute(query);
+    }
+    
+    public void insertTag (int a, Akun friend, Akun kita) {
+        String query = "insert into tag (id_media,id_user,id_kita) values ("
+                +a+","
+                +friend.getIdAkun()+","
+                +kita.getIdAkun()+")";
         execute(query);
     }
     

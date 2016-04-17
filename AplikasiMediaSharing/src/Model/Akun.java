@@ -112,6 +112,11 @@ public class Akun implements java.io.Serializable{
         this.username = username;
         this.idAkun = idAkun;
     }
+
+    public Akun(int idAkun,String username) {
+        this.username = username;
+        this.idAkun = idAkun;
+    }
     
     
     
