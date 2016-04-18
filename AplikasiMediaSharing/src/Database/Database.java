@@ -71,7 +71,7 @@ public class Database {
     public ResultSet loadSemuaFriendDB(Akun a) {
         String query = "select id_user,username,first_name,last_name from user where id_user in "
                 + "(select id_user from friend where id_kita = "+a.getIdAkun()+")";
-        System.out.println(query);
+        //System.out.println(query);
         rs = getData(query);
         return rs;
     }

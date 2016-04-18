@@ -173,11 +173,49 @@ public class Aplikasi {
         }
         return null;
     }
+    
+    public boolean cekMedia(int i) {
+        for (Media tmp : listMedia) {
+            if (tmp.getIdMedia()==i) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean cariAkun(int i) {
+        for (Akun tmp : listAkun) {
+            if (tmp.getIdAkun()==i) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean cekFriend(int i) {
+         for (Akun tmp : listFriend) {
+            if (tmp.getIdAkun()==i) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Akun getAkun(String username) {
         Akun result = new Akun();
         for (Akun temp : listAkun) {
             if (temp.getUsername().equals(username)) {
+                result = temp;
+                return result;
+            }
+        }
+        return null;
+    }
+    
+    public Akun getAkun1(int id) {
+        Akun result = new Akun();
+        for (Akun temp : listAkun) {
+            if (temp.getIdAkun()==id) {
                 result = temp;
                 return result;
             }
@@ -256,6 +294,49 @@ public class Aplikasi {
 
     public void delFriend(Akun friend, Akun kita) {
         db.deleteFriend(friend, kita);
+    }
+    
+    public String convertBulan(int i) {
+        String o = "";
+        switch (i) {
+            case 1:
+                o = "Jan";
+                break;
+            case 2:
+                o = "Feb";
+                break;
+            case 3:
+                o = "Mar";
+                break;
+            case 4:
+                o = "Apr";
+                break;
+            case 5:
+                o = "May";
+                break;
+            case 6:
+                o = "Jun";
+                break;
+            case 7:
+                o = "Jul";
+                break;
+            case 8:
+                o = "Aug";
+                break;
+            case 9:
+                o = "Sep";
+                break;
+            case 10:
+                o = "Oct";
+                break;
+            case 11:
+                o = "Nov";
+                break;
+            case 12:
+                o = "Dec";
+                break;
+        }
+        return o;
     }
 
     /*

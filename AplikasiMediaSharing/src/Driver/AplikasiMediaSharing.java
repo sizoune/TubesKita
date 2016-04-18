@@ -13,6 +13,7 @@ package aplikasimediasharing;
 package Driver;
 
 import Controller.LoginPanelController;
+import view.ViewConsole;
 import Model.Aplikasi;
 
 
@@ -23,10 +24,14 @@ public class AplikasiMediaSharing {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        /*console c = new console();
-        c.Display();*/
         Aplikasi app = new Aplikasi();
-        new LoginPanelController(app);
+        //GUI
+        //new LoginPanelController(app);
+        
+        
+        //Console
+        ViewConsole vw = new ViewConsole(app);
+        vw.yangTampil();
     }
     
 }
