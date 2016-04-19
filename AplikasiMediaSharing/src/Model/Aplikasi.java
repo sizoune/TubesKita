@@ -65,20 +65,66 @@ public class Aplikasi {
         }
     }
 
+    public boolean cekTag(int idmed) {
+        //System.out.println(getMediaTag(idmed).cekTag());
+        return getMediaTag(idmed).cekTag();
+    }
+
+    public int getlistmediai(int id) {
+        int tmp = 0;
+        for (int i = 0; i < listMedia.size(); i++) {
+            if (listMedia.get(i).getIdMedia() == id) {
+                tmp = i;
+            }
+        }
+        return tmp;
+    }
+
     public void refreshTag(int idmedia, Akun kita) {
+        boolean cek=false;
+        //listMedia.get(getlistmediai(idmedia)).tagPerson(new Akun());
+        ArrayList<Akun> ak = new ArrayList<>();
         rs = db.loadTag(idmedia, kita);
         try {
-            loadSemuaMediaUser(kita.getIdAkun());
+            //loadSemuaMediaUser(kita.getIdAkun());
             while (rs.next()) {
-                for (int i=0; i<listMedia.size();i++) {
-                    if (listMedia.get(i).getIdMedia()==idmedia) {
-                        listMedia.get(i).tagPerson(new Akun(rs.getInt(1),rs.getString(2)));
+                ak.add(new Akun(rs.getInt(1), rs.getString(2)));
+                //listMedia.get(getlistmediai(idmedia)).tagPerson(new Akun(rs.getInt(1), rs.getString(2)));
+                //System.out.println(rs.getInt(1)+","+rs.getString(2));
+            }
+            rs.close();
+            for (int i = 0;i<ak.size();i++) {
+                for (int x=0 ;x < listMedia.get(getlistmediai(idmedia)).sizeTag();x++) {
+                    if (listMedia.get(getlistmediai(idmedia)).getPersonTag(x).getUsername().equals(ak.get(i).getUsername())) {
+                        cek = true;
                     }
+                }
+                //biar data yang masuk ke list ngga ke double zzz
+                if (cek==false) {
+                    listMedia.get(getlistmediai(idmedia)).tagPerson(ak.get(i));
                 }
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " " + ex.getMessage(), "Can't Get Data", JOptionPane.WARNING_MESSAGE);
         }
+    }
+
+    public boolean cekTagged(int idmedia, Akun friend, Akun kita) {
+        boolean temu = false;
+        rs = db.loadTagbyid(kita);
+        try {
+            while (rs.next()) {
+                if (idmedia == rs.getInt(1)) {
+                    if (friend.getIdAkun() == rs.getInt(2)) {
+                        temu = true;
+                    }
+                }
+                //System.out.println(rs.getInt(1)+","+rs.getString(2)+","+temu);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " " + ex.getMessage(), "Can't Get Data", JOptionPane.WARNING_MESSAGE);
+        }
+        return temu;
     }
 
     public void refreshlistFriend(Akun a) {
@@ -173,28 +219,37 @@ public class Aplikasi {
         }
         return null;
     }
-    
+
+    public Media getMediaTag(int idmed) {
+        for (int i=0;i<listMedia.size();i++) {
+            if (listMedia.get(i).getIdMedia() == idmed) {
+                return listMedia.get(i);
+            }
+        }
+        return null;
+    }
+
     public boolean cekMedia(int i) {
         for (Media tmp : listMedia) {
-            if (tmp.getIdMedia()==i) {
+            if (tmp.getIdMedia() == i) {
                 return true;
             }
         }
         return false;
     }
-    
+
     public boolean cariAkun(int i) {
         for (Akun tmp : listAkun) {
-            if (tmp.getIdAkun()==i) {
+            if (tmp.getIdAkun() == i) {
                 return true;
             }
         }
         return false;
     }
-    
+
     public boolean cekFriend(int i) {
-         for (Akun tmp : listFriend) {
-            if (tmp.getIdAkun()==i) {
+        for (Akun tmp : listFriend) {
+            if (tmp.getIdAkun() == i) {
                 return true;
             }
         }
@@ -211,11 +266,11 @@ public class Aplikasi {
         }
         return null;
     }
-    
+
     public Akun getAkun1(int id) {
         Akun result = new Akun();
         for (Akun temp : listAkun) {
-            if (temp.getIdAkun()==id) {
+            if (temp.getIdAkun() == id) {
                 result = temp;
                 return result;
             }
@@ -294,8 +349,13 @@ public class Aplikasi {
 
     public void delFriend(Akun friend, Akun kita) {
         db.deleteFriend(friend, kita);
+    } 
+        
+    public void deleteTag (int idmed, Akun friend) {
+        db.deleteTag(friend, idmed);
     }
-    
+
+
     public String convertBulan(int i) {
         String o = "";
         switch (i) {

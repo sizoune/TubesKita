@@ -26,12 +26,12 @@ public class AplikasiMediaSharing {
         // TODO code application logic here
         Aplikasi app = new Aplikasi();
         //GUI
-        //new LoginPanelController(app);
+        new LoginPanelController(app);
         
         
         //Console
-        ViewConsole vw = new ViewConsole(app);
-        vw.yangTampil();
+        /*ViewConsole vw = new ViewConsole(app);
+        vw.yangTampil();*/
     }
     
 }

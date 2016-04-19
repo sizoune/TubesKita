@@ -29,7 +29,7 @@ public class Database {
     private String dbUser = "root";
     private String password = "";
     //private ArrayList<Akun> listAkun = new ArrayList<Akun>();
-    
+
     public Database() {
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/media_sharing", dbUser, password);
@@ -38,7 +38,7 @@ public class Database {
             JOptionPane.showMessageDialog(null, " " + e.getMessage(), "Connection Error", JOptionPane.WARNING_MESSAGE);
         }
     }
-    
+
     public ResultSet getData(String query) {
         try {
             rs = stmt.executeQuery(query);
@@ -47,7 +47,7 @@ public class Database {
         }
         return rs;
     }
-    
+
     public void execute(String query) {
         try {
             stmt.execute(query);
@@ -55,45 +55,57 @@ public class Database {
             JOptionPane.showMessageDialog(null, " " + ex.getMessage(), "Can't Execute Query", JOptionPane.WARNING_MESSAGE);
         }
     }
-    
+
     public ResultSet loadSemuaAkunDB() {
         String query = "Select * from user";
         rs = getData(query);
         return rs;
-    }    
-    
+    }
+
     public ResultSet loadSemuaMediaDB(int id) {
         String query = "Select * from media where id_user='" + id + "'";
         rs = getData(query);
         return rs;
     }
-    
+
     public ResultSet loadSemuaFriendDB(Akun a) {
         String query = "select id_user,username,first_name,last_name from user where id_user in "
-                + "(select id_user from friend where id_kita = "+a.getIdAkun()+")";
+                + "(select id_user from friend where id_kita = " + a.getIdAkun() + ")";
         //System.out.println(query);
         rs = getData(query);
         return rs;
     }
+
+    public ResultSet loadTag(int i, Akun a) {
+        String query = "select id_user,username from user join tag using (id_user) where tag.id_media = '" + i + "' and tag.id_kita = '" + a.getIdAkun() + "'";
+        rs = getData(query);
+        //System.out.println(query);
+        return rs;
+    }
     
-    public ResultSet loadTag (int i,Akun a) {
-        String query = "select id_user,username from tag join user using (id_user) where id_media = "+i;
+    public ResultSet loadTagbyid (Akun a) {
+        String query = "select id_media,id_user from tag where id_kita ="+a.getIdAkun();
         rs = getData(query);
         return rs;
     }
     
-    public void insertFriend (Akun friend, Akun kita) {
+    public void deleteTag(Akun friend, int idmedia) {
+        String query = "delete from tag where id_media = "+idmedia+" and id_user = "+friend.getIdAkun();
+        execute(query);
+    }
+
+    public void insertFriend(Akun friend, Akun kita) {
         String query = "insert into friend (id_user,id_kita) values ("
-                +friend.getIdAkun()+","
-                +kita.getIdAkun()+")";
+                + friend.getIdAkun() + ","
+                + kita.getIdAkun() + ")";
         execute(query);
     }
-    
-    public void deleteFriend (Akun friend, Akun kita) {
-        String query = "delete from friend where id_user = "+friend.getIdAkun()+" and id_kita = "+kita.getIdAkun();
+
+    public void deleteFriend(Akun friend, Akun kita) {
+        String query = "delete from friend where id_user = " + friend.getIdAkun() + " and id_kita = " + kita.getIdAkun();
         execute(query);
     }
-    
+
     public void insertAkun(Akun a) {
         String query = "insert into user(username,first_name,last_name,tempat_lahir,tanggal_lahir,email,password) values("
                 + "'" + a.getUsername() + "'"
@@ -105,7 +117,7 @@ public class Database {
                 + ",'" + a.getPassword() + "')";
         execute(query);
     }
-    
+
     public void insertMedia(Media m, Akun a) {
         String cek;
         if (m instanceof Foto) {
@@ -120,21 +132,20 @@ public class Database {
                 + m.getSize() + ")";
         execute(query);
     }
-    
-    public void insertTag (int a, Akun friend, Akun kita) {
+
+    public void insertTag(int a, Akun friend, Akun kita) {
         String query = "insert into tag (id_media,id_user,id_kita) values ("
-                +a+","
-                +friend.getIdAkun()+","
-                +kita.getIdAkun()+")";
+                + a + ","
+                + friend.getIdAkun() + ","
+                + kita.getIdAkun() + ")";
         execute(query);
     }
-    
-    public void deleteMedia (int id) {
-        String query = "delete from media where id_media = "+id;
+
+    public void deleteMedia(int id) {
+        String query = "delete from media where id_media = " + id;
         execute(query);
     }
-    
-    
+
     public void updateAkun(Akun a) {
         String query = "update user set "
                 + "username ='" + a.getUsername() + "',"
@@ -147,5 +158,5 @@ public class Database {
                 + "where id_user =" + a.getIdAkun();
         execute(query);
     }
-    
+
 }

@@ -84,6 +84,22 @@ public class Media extends javax.swing.JFrame implements View {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        cbMedia1 = new javax.swing.JComboBox();
+        panelMedia1 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        listMedia1 = new javax.swing.JList();
+        jPanel15 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        listFriend1 = new javax.swing.JList();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        removeTag = new javax.swing.JButton();
+        seeTagged = new javax.swing.JButton();
         jBack = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
@@ -111,7 +127,7 @@ public class Media extends javax.swing.JFrame implements View {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jNameP)
                             .addComponent(jSizeP, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))))
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addContainerGap(239, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +142,7 @@ public class Media extends javax.swing.JFrame implements View {
                     .addComponent(jSizeP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jAddP)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("+ Photo", jPanel1);
@@ -153,7 +169,7 @@ public class Media extends javax.swing.JFrame implements View {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jNameV)
                             .addComponent(jSizeV, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))))
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +184,7 @@ public class Media extends javax.swing.JFrame implements View {
                     .addComponent(jSizeV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jAddV)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("+ Video", jPanel2);
@@ -232,7 +248,7 @@ public class Media extends javax.swing.JFrame implements View {
                 .addComponent(jDel1)
                 .addGap(27, 27, 27)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,7 +307,7 @@ public class Media extends javax.swing.JFrame implements View {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -305,7 +321,7 @@ public class Media extends javax.swing.JFrame implements View {
                 .addComponent(jDel)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,7 +440,7 @@ public class Media extends javax.swing.JFrame implements View {
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel13)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -447,7 +463,7 @@ public class Media extends javax.swing.JFrame implements View {
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)))
                 .addComponent(panelMedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -465,15 +481,155 @@ public class Media extends javax.swing.JFrame implements View {
 
         jTabbedPane4.addTab("+Tag", jPanel9);
 
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Media"));
+
+        cbMedia1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Photo", "Video" }));
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbMedia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbMedia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panelMedia1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)))));
+
+        jScrollPane5.setViewportView(listMedia1);
+
+        javax.swing.GroupLayout panelMedia1Layout = new javax.swing.GroupLayout(panelMedia1);
+        panelMedia1.setLayout(panelMedia1Layout);
+        panelMedia1Layout.setHorizontalGroup(
+            panelMedia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMedia1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panelMedia1Layout.setVerticalGroup(
+            panelMedia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMedia1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5)
+                .addContainerGap())
+        );
+
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Friend List"), "Friend Tagged"));
+
+        jScrollPane6.setViewportView(listFriend1);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addComponent(jScrollPane6)
+                .addContainerGap())
+        );
+
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Instruction"));
+
+        jLabel14.setText("1. Choose your Media");
+
+        jLabel15.setText("2. Select Your Photo / Video");
+
+        jLabel16.setText("3. Click See Tagged");
+
+        jLabel17.setText("4. Choose Friend");
+
+        jLabel18.setText("5. Click Remove Tag");
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel18))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        removeTag.setText("Remove Tag");
+
+        seeTagged.setText("See Tagged");
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 522, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelMedia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(seeTagged)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(removeTag))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 251, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(removeTag)
+                            .addComponent(seeTagged))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelMedia1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane4.addTab("- Tag", jPanel10);
@@ -526,6 +682,7 @@ public class Media extends javax.swing.JFrame implements View {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbMedia;
+    private javax.swing.JComboBox cbMedia1;
     private javax.swing.JButton jAddP;
     private javax.swing.JButton jAddV;
     private javax.swing.JButton jBack;
@@ -536,6 +693,11 @@ public class Media extends javax.swing.JFrame implements View {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -550,7 +712,10 @@ public class Media extends javax.swing.JFrame implements View {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -563,16 +728,23 @@ public class Media extends javax.swing.JFrame implements View {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTextField jSizeP;
     private javax.swing.JTextField jSizeV;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JList listFriend;
+    private javax.swing.JList listFriend1;
     private javax.swing.JList listMedia;
+    private javax.swing.JList listMedia1;
     private javax.swing.JList lsFoto;
     private javax.swing.JList lsVideo;
     private javax.swing.JPanel panelMedia;
+    private javax.swing.JPanel panelMedia1;
+    private javax.swing.JButton removeTag;
+    private javax.swing.JButton seeTagged;
     private javax.swing.JTabbedPane tabpane4;
     private javax.swing.JButton tag;
     // End of variables declaration//GEN-END:variables
@@ -589,7 +761,10 @@ public class Media extends javax.swing.JFrame implements View {
         jDel.addActionListener(e);
         jDel1.addActionListener(e);
         tag.addActionListener(e);
+        removeTag.addActionListener(e);
         cbMedia.addActionListener(e);
+        cbMedia1.addActionListener(e);
+        seeTagged.addActionListener(e);
     }
     
     @Override
@@ -599,6 +774,10 @@ public class Media extends javax.swing.JFrame implements View {
     
     public Object getcomboMedia() {
         return cbMedia;
+    }
+    
+    public Object getcomboMedia1() {
+        return cbMedia1;
     }
     
     public Object getaddFoto() {
@@ -613,6 +792,10 @@ public class Media extends javax.swing.JFrame implements View {
         return jBack;
     }
     
+    public Object getseeTagged() {
+        return seeTagged;
+    }
+    
     public Object getDelVid() {
         return jDel;
     }
@@ -623,6 +806,10 @@ public class Media extends javax.swing.JFrame implements View {
     
     public Object getTag() {
         return tag;
+    }
+    
+    public Object getremoveTag() {
+        return removeTag;
     }
     
     public void reset() {
@@ -656,8 +843,16 @@ public class Media extends javax.swing.JFrame implements View {
         return jPanel9; 
     }
     
+    public JPanel getPanel10() {
+        return jPanel10; 
+    }
+    
     public JPanel getPanelMedia() {
         return panelMedia; 
+    }
+    
+    public JPanel getPanelMedia1() {
+        return panelMedia1; 
     }
     
     public JList getlistFoto() {
@@ -674,6 +869,14 @@ public class Media extends javax.swing.JFrame implements View {
     
     public JList getlistMedia() {
         return listMedia;
+    }
+    
+    public JList getlistFriend1() {
+        return listFriend1;
+    }
+    
+    public JList getlistMedia1() {
+        return listMedia1;
     }
     
     public String getnameFoto() {
@@ -708,12 +911,29 @@ public class Media extends javax.swing.JFrame implements View {
         return (String) listMedia.getSelectedValue();
     } 
     
+    public String getselectedFriend1() {
+        return (String) listFriend1.getSelectedValue();
+    } 
+    
+    public String getselectedMedia1() {
+        return (String) listMedia1.getSelectedValue();
+    }
+    
     public String getselectedCBMdia() {
         return (String) cbMedia.getSelectedItem();
     }
     
+    public String getselectedCBMdia1() {
+        return (String) cbMedia1.getSelectedItem();
+    }
+    
+        
     public JComboBox getcbMedia() {
         return cbMedia;
+    }
+    
+    public JComboBox getcbMedia1() {
+        return cbMedia1;
     }
     
     public void addAdapter(MouseAdapter e) {
@@ -724,6 +944,8 @@ public class Media extends javax.swing.JFrame implements View {
         //cbMedia.addMouseListener(e);
         listFriend.addMouseListener(e);
         listMedia.addMouseListener(e);
+        listFriend1.addMouseListener(e);
+        listMedia1.addMouseListener(e);
     }
     
 }
