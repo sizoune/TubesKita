@@ -179,7 +179,7 @@ public class Aplikasi {
     }
 
     public boolean login(String username, String password) {
-        loadSemuaAkun();
+        //loadSemuaAkun();
         validLogin = false;
         Akun temp = getAkun(username);
         if (temp != null) {

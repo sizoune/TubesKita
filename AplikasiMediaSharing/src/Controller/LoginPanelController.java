@@ -30,6 +30,7 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
 
     public LoginPanelController(Aplikasi e) {
         this.aplikasi = e;
+        aplikasi.loadSemuaAkun();
         LoginUser log = new LoginUser();
         log.setVisible(true);
         log.setLocationRelativeTo(null);
@@ -137,15 +138,19 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                         || i3.equals("-")) {
                     JOptionPane.showMessageDialog(null, "Data anda belum lengkap");
                 } else {
-                    as.setNamaDepan(acc.getFirstname());
-                    as.setNamaBelakang(acc.getLastname());
-                    as.setUsername(acc.getUsername());
-                    as.setPassword(acc.getPassword());
-                    as.setTempatLahir(acc.getBirthplace());
-                    as.setTanggalLahir(acc.getBirthdate());
-                    as.setEmail(acc.getEmail());
-                    aplikasi.addAkun(as);
-                    JOptionPane.showMessageDialog(null, "Data Saved !");
+                    if (aplikasi.getAkun(acc.getUsername()) == null) {
+                        as.setNamaDepan(acc.getFirstname());
+                        as.setNamaBelakang(acc.getLastname());
+                        as.setUsername(acc.getUsername());
+                        as.setPassword(acc.getPassword());
+                        as.setTempatLahir(acc.getBirthplace());
+                        as.setTanggalLahir(acc.getBirthdate());
+                        as.setEmail(acc.getEmail());
+                        aplikasi.addAkun(as);
+                        JOptionPane.showMessageDialog(null, "Data Saved !");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Username sudah terdaftar tolong isi dengan yang lain !");
+                    }
                     acc.reset();
                 }
             } else if (src.equals(acc.getBackbutton())) {
@@ -169,16 +174,21 @@ public class LoginPanelController extends MouseAdapter implements ActionListener
                         || i3.equals("-")) {
                     JOptionPane.showMessageDialog(null, "Data anda belum lengkap");
                 } else {
-                    Model.Akun as = aplikasi.getAkun(uSession);
-                    as.setNamaDepan(pro.getFirstName());
-                    as.setNamaBelakang(pro.getLastName());
-                    as.setUsername(pro.getUsername());
-                    as.setPassword(pro.getPassword());
-                    as.setTempatLahir(pro.getBirthPlace());
-                    as.setTanggalLahir(pro.getBirthDate());
-                    //as.setEmail(.getEmail()); belum ada email nya wkwkwk
-                    aplikasi.updateAkun(as);
-                    JOptionPane.showMessageDialog(null, "Data Updated !");
+                    if (aplikasi.getAkun(pro.getUsername()) == null) {
+                        Model.Akun as = aplikasi.getAkun(uSession);
+                        as.setNamaDepan(pro.getFirstName());
+                        as.setNamaBelakang(pro.getLastName());
+                        as.setUsername(pro.getUsername());
+                        as.setPassword(pro.getPassword());
+                        as.setTempatLahir(pro.getBirthPlace());
+                        as.setTanggalLahir(pro.getBirthDate());
+                        //as.setEmail(.getEmail()); belum ada email nya wkwkwk
+                        aplikasi.updateAkun(as);
+                        JOptionPane.showMessageDialog(null, "Data Updated !");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Username sudah terdaftar tolong isi dengan yang lain !");
+                        pro.setUsername("");
+                    }
                 }
             } else if (src.equals(pro.getMediaButton())) {
                 boolean cekf = false;
